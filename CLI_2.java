@@ -13,11 +13,9 @@ public class CLI_2 {
         final String transfer= "TRANSFER";
         final String accountBalance= "CHECK ACCOUNT BALANCE";
         final String deleteAccount= "DELETE ACCOUNT";
-        String screen = Dashboard; 
+        String screen = Dashboard;         
 
-        String [] CustomerAccount=new String [0];
-        String [] CustomerName = new String [0];
-        double [] amount = new double[0];
+        String [][] Customer = new String[0][];
 
         do{
             System.out.println(clear);
@@ -53,7 +51,7 @@ public class CLI_2 {
                     break;
                 case newAccount:
 
-                    String account = String.format("SDB-%05d", CustomerAccount.length+1);
+                    String account = String.format("SDB-%05d", Customer.length+1);
                     System.out.println("Bank Account Number : "+account);
                     
                     String name;
@@ -96,35 +94,30 @@ public class CLI_2 {
                         }
                         break;
 
-
                     }while(true);
+                   
+                    String [][] newCustomer = new String[Customer.length+1][3];
 
-                    String [] newCustomerAccount = new String[CustomerAccount.length+1];
-                    String [] newCustomerName = new String[CustomerName.length+1];
-                    double [] newAmount = new double[amount.length+1];
-
-                    for (int i = 0; i < CustomerAccount.length; i++) {
-                        newCustomerAccount[i]=CustomerAccount[i];
-                        newCustomerName[i]=CustomerName[i];
-                        newAmount[i]=amount[i];
+                    for (int i = 0; i < Customer.length; i++) {
+                        newCustomer[i]=Customer[i];
                     }
-                    newCustomerAccount[newCustomerAccount.length-1]=account;
-                    newCustomerName[newCustomerName.length-1]=name;
-                    newAmount[newAmount.length-1]=Double.valueOf(initialamount);
 
-                    CustomerAccount=newCustomerAccount;
-                    CustomerName=newCustomerName;
-                    amount=newAmount;
+                    newCustomer[newCustomer.length-1][0]=account;
+                    newCustomer[newCustomer.length-1][1]=name;
+                    newCustomer[newCustomer.length-1][2]=initialamount;
+
+                    Customer=newCustomer;
+
                     System.out.println();
-
                     System.out.println(account+" : "+name +" has been created Successfully\n");
-
                     System.out.print("Do you want to add another Account [Y/N] : ");
                    
                     if (scan.nextLine().strip().toUpperCase().equals("Y")) continue;
                     screen = Dashboard;
                     break;
 
+                
+                 
                 default:
                     System.exit(0);
             }
