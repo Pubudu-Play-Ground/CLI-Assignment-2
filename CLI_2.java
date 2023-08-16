@@ -116,8 +116,11 @@ public class CLI_2 {
                     screen = Dashboard;
                     break;
 
-                
-                 
+                case deposits:
+                case withdrawal:
+                case transfer:
+                case accountBalance:
+                case deleteAccount:
                 default:
                     System.exit(0);
             }
